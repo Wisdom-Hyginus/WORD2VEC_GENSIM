@@ -29,23 +29,23 @@ words = [w for w in words if not w in stop_words]
 words = ' '.join(words)
 print(len(words))
 
+
 samplevec = [nltk.word_tokenize(words)]
 
-print(samplevec[:10])
-
+print(samplevec[:5])
 hyginus = Word2Vec(samplevec,
                    window=15,
                    min_count=1,
-                   workers=20,
+                   workers=5,
                    negative=5,
                    sg=0,
-                   vector_size=300,
-                   epochs=30)
+                   vector_size=20,
+                   epochs=10)
 hyginus.save('hyginus')
 
 re_hyginus = Word2Vec.load('hyginus')
 
-print(re_hyginus.wv.most_similar(positive='forum', topn=5))
+print("Top 5 most similar words to forum: ", re_hyginus.wv.most_similar(positive='forum', topn=5))
 
 print("The Similarity between average and highest is:", str(re_hyginus.wv.most_similar('average', 'highest')))
 
@@ -91,7 +91,7 @@ def plot_with_matplotlib(x_vals, y_vals, labels):
     selected_indices.append(index)
     index = labels.index("fuel")
     selected_indices.append(index)
-    index = labels.index("economy")
+    index = labels.index("kia")
     selected_indices.append(index)
     index = labels.index("consumption")
     selected_indices.append(index)
