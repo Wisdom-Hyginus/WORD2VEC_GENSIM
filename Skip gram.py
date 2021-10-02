@@ -39,8 +39,8 @@ hyginus = Word2Vec(samplevec,
                    workers=5,
                    negative=5,
                    sg=1,
-                   vector_size=20,
-                   epochs=10)
+                   vector_size=5,
+                   epochs=5)
 hyginus.save('hyginus')
 
 re_hyginus = Word2Vec.load('hyginus')
